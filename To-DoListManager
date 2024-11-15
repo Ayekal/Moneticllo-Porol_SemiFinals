@@ -37,3 +37,43 @@ class ToDoListManager:
             for idx, task in enumerate(filtered_tasks, start=1):
                 print(f"{idx}. {task['name']}")
         print()
+
+    def edit_task(self):
+        self.view_tasks()
+        try:
+            task_num = int(input("Enter the task number to edit: ")) - 1
+            if 0 <= task_num < len(self.tasks):
+                new_name = input("Enter the new task name: ").strip()
+                if new_name:
+                    self.tasks[task_num]['name'] = new_name
+                    print("Task updated successfully!")
+                else:
+                    print("Task name cannot be empty.")
+            else:
+                print("Invalid task number.")
+        except ValueError:
+            print("Please enter a valid number.")
+
+    def mark_complete(self):
+        self.view_tasks()
+        try:
+            task_num = int(input("Enter the task number to mark as complete: ")) - 1
+            if 0 <= task_num < len(self.tasks):
+                self.tasks[task_num]['completed'] = True
+                print("Task marked as complete!")
+            else:
+                print("Invalid task number.")
+        except ValueError:
+            print("Please enter a valid number.")
+
+    def delete_task(self):
+        self.view_tasks()
+        try:
+            task_num = int(input("Enter the task number to delete: ")) - 1
+            if 0 <= task_num < len(self.tasks):
+                removed_task = self.tasks.pop(task_num)
+                print(f"Task '{removed_task['name']}' deleted successfully!")
+            else:
+                print("Invalid task number.")
+        except ValueError:
+            print("Please enter a valid number.")
