@@ -1,0 +1,39 @@
+class ToDoListManager:
+    def __init__(self):
+        self.tasks = []  # List to hold tasks
+
+    def add_task(self):
+        task_name = input("Enter the task name: ").strip()
+        if task_name:
+            self.tasks.append({'name': task_name, 'completed': False})
+            print(f"Task '{task_name}' added successfully!")
+        else:
+            print("Task name cannot be empty.")
+
+    def view_tasks(self):
+        if not self.tasks:
+            print("No tasks available.")
+            return
+        print("\nCurrent Tasks:")
+        for idx, task in enumerate(self.tasks, start=1):
+            status = "✔ Completed" if task['completed'] else "✘ Incomplete"
+            print(f"{idx}. {task['name']} [{status}]")
+        print()
+
+    def filter_tasks(self):
+        filter_type = input("View (1) Completed or (2) Incomplete tasks? Enter 1 or 2: ").strip()
+        if filter_type not in ('1', '2'):
+            print("Invalid choice!")
+            return
+        if filter_type == '1':
+            filtered_tasks = [task for task in self.tasks if task['completed']]
+        else:  # filter_type == '2'
+            filtered_tasks = [task for task in self.tasks if not task['completed']]
+        
+        if not filtered_tasks:
+            print("No matching tasks found.")
+        else:
+            print("\nFiltered Tasks:")
+            for idx, task in enumerate(filtered_tasks, start=1):
+                print(f"{idx}. {task['name']}")
+        print()
