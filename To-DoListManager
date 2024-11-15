@@ -77,3 +77,37 @@ class ToDoListManager:
                 print("Invalid task number.")
         except ValueError:
             print("Please enter a valid number.")
+
+    def menu(self):
+        while True:
+            print("\nTo-Do List Manager")
+            print("1. Add a Task")
+            print("2. View All Tasks")
+            print("3. Filter Tasks")
+            print("4. Edit a Task")
+            print("5. Mark a Task as Complete")
+            print("6. Delete a Task")
+            print("7. Exit")
+            choice = input("Enter your choice: ").strip()
+            if choice == '1':
+                self.add_task()
+            elif choice == '2':
+                self.view_tasks()
+            elif choice == '3':
+                self.filter_tasks()
+            elif choice == '4':
+                self.edit_task()
+            elif choice == '5':
+                self.mark_complete()
+            elif choice == '6':
+                self.delete_task()
+            elif choice == '7':
+                print("Exiting the program. Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please try again.")
+
+# Run the To-Do List Manager
+if __name__ == "__main__":
+    manager = ToDoListManager()
+    manager.menu()
